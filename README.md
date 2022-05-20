@@ -6,7 +6,7 @@ This is a proof-of-concept implementation for an Envoy API Gateway implementatio
 
 The following objectives are covered
 
-- [ ] Docker Compose setup
+- [x] Docker Compose setup
 - [ ] Envoy as Reverse Proxy / Edge Router
 - [ ] Envoy dynamic configuration (fs)
 - [ ] Envoy local rate limiting
