@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  authservice:
+    image: ${DOCKER_REGISTRY-}authservice
+    build:
+      context: .
+      dockerfile: Services/AuthService/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "7000:80"
+
+  publicservice:
+    image: ${DOCKER_REGISTRY-}publicservice
+    build:
+      context: .
+      dockerfile: Services/PublicService/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "7001:80"
+
+  protectedservice:
+    image: ${DOCKER_REGISTRY-}protectedservice
+    build:
+      context: .
+      dockerfile: Services/ProtectedService/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "7002:80"

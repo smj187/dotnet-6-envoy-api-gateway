@@ -17,5 +17,6 @@ The following objectives are covered
 ## Running
 
 ```
-docker-compose up
+docker-compose -f docker-compose-services.yaml up --build
+docker-compose -f docker-compose-services.yaml down
 ```
