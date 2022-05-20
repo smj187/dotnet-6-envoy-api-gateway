@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  gateway:
+    container_name: gateway
+    build:
+      context: ./Envoy
+      dockerfile: Dockerfile
+    ports:
+      - "10000:10000"
+      - "10001:10001"

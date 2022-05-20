@@ -1,0 +1,43 @@
+version_info: "0"
+resources:
+  - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
+    name: authservice
+    type: STRICT_DNS
+    lb_policy: ROUND_ROBIN
+    load_assignment:
+      cluster_name: authservice
+      endpoints:
+        - lb_endpoints:
+            - endpoint:
+                address:
+                  socket_address:
+                    address: authservice
+                    port_value: 80
+
+  - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
+    name: publicservice
+    type: STRICT_DNS
+    lb_policy: ROUND_ROBIN
+    load_assignment:
+      cluster_name: publicservice
+      endpoints:
+        - lb_endpoints:
+            - endpoint:
+                address:
+                  socket_address:
+                    address: publicservice
+                    port_value: 80
+
+  - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
+    name: protectedservice
+    type: STRICT_DNS
+    lb_policy: ROUND_ROBIN
+    load_assignment:
+      cluster_name: protectedservice
+      endpoints:
+        - lb_endpoints:
+            - endpoint:
+                address:
+                  socket_address:
+                    address: protectedservice
+                    port_value: 80
