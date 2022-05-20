@@ -1,17 +1,6 @@
-version: "3.8"
+version: "3.4"
 
 services:
-  authservice:
-    image: ${DOCKER_REGISTRY-}authservice
-    build:
-      context: .
-      dockerfile: Services/AuthService/Dockerfile
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:80
-    ports:
-      - "7000:80"
-
   publicservice:
     image: ${DOCKER_REGISTRY-}publicservice
     build:
@@ -22,6 +11,10 @@ services:
       - ASPNETCORE_URLS=http://+:80
     ports:
       - "7001:80"
+      - "8001:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
   protectedservice:
     image: ${DOCKER_REGISTRY-}protectedservice
@@ -33,3 +26,22 @@ services:
       - ASPNETCORE_URLS=http://+:80
     ports:
       - "7002:80"
+      - "8002:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  authservice:
+    image: ${DOCKER_REGISTRY-}authservice
+    build:
+      context: .
+      dockerfile: Services/AuthService/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "7000:80"
+      - "8000:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
