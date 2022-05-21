@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "735aa8c7-2e90-4448-aa6c-2d66b0f3071b",
+		"name": "envoy gateway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12392873"
+	},
+	"item": [
+		{
+			"name": "public endpoint (rate limited)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:10000/public",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"public"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "protected endpoint (user)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "token3",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:10000/protected/user",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"protected",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "protected endpoint (user 401)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "token4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:10000/protected/user",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"protected",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "protected endpoint (private)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "token1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:10000/protected/private",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"protected",
+						"private"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

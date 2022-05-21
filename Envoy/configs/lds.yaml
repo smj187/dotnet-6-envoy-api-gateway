@@ -96,3 +96,16 @@ resources:
                       filename: /var/lib/envoy/https/cacert.pem
                     private_key:
                       filename: /var/lib/envoy/https/cakey.pem
+        transport_socket:
+          name: envoy.transport_sockets.tls
+          typed_config:
+            "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext
+            common_tls_context:
+              tls_certificates:
+                certificate_chain:
+                  filename: /var/lib/envoy/https/cert.pem
+                private_key:
+                  filename: /var/lib/envoy/https/key.pem
+              alpn_protocols: ["h2,http/1.1"]
+              tls_params:
+                tls_minimum_protocol_version: "TLSv1_2"
