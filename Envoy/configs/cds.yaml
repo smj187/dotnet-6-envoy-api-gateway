@@ -12,7 +12,11 @@ resources:
                 address:
                   socket_address:
                     address: authservice
-                    port_value: 80
+                    port_value: 443
+    transport_socket:
+      name: envoy.transport_sockets.tls
+      typed_config:
+        "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext
 
   - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
     name: publicservice
@@ -26,7 +30,11 @@ resources:
                 address:
                   socket_address:
                     address: publicservice
-                    port_value: 80
+                    port_value: 443
+    transport_socket:
+      name: envoy.transport_sockets.tls
+      typed_config:
+        "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext
 
   - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
     name: protectedservice
@@ -40,4 +48,8 @@ resources:
                 address:
                   socket_address:
                     address: protectedservice
-                    port_value: 80
+                    port_value: 443
+    transport_socket:
+      name: envoy.transport_sockets.tls
+      typed_config:
+        "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext

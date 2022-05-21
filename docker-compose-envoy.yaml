@@ -6,5 +6,5 @@ services:
       context: ./Envoy
       dockerfile: Dockerfile
     ports:
+      - "9902:9902"
       - "10000:10000"
-      - "10001:10001"
