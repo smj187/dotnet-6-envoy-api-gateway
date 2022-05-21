@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using PublicService.Services;
 
 namespace PublicService.Controllers
 {
@@ -6,7 +7,18 @@ namespace PublicService.Controllers
     [Route("[controller]")]
     public class PublicController : ControllerBase
     {
+        private readonly WeatherService _weatherService;
+
+        public PublicController(WeatherService weatherService)
+        {
+            _weatherService = weatherService;
+        }
+
         [HttpGet]
-        public IActionResult Public() => Ok("this public endpoint is rate limited by envoy");
+        public IActionResult Public()
+        {
+            var res = $"weather: {_weatherService.GetWeather()}";
+            return Ok($"this public endpoint is rate limited by envoy\n\n{res}");
+        }
     }
 }

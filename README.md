@@ -14,7 +14,7 @@ The following objectives are covered
 - [x] Envoy external authZ
 - [x] Envoy with HTTPS
 - [x] Envpy with HTTP/2
-- [ ] Load balancing
+- [x] Load balancing
 
 ## Environment Setup
 
@@ -23,6 +23,9 @@ Run the services
 ```
 docker-compose -f docker-compose-services.yaml up --build
 docker-compose -f docker-compose-services.yaml down
+
+// run with scale for a round robin load balancing
+docker-compose -f docker-compose-services.yaml up --scale publicservice=2
 ```
 
 Run envoy

@@ -31,6 +31,7 @@ resources:
                   socket_address:
                     address: publicservice
                     port_value: 443
+
     transport_socket:
       name: envoy.transport_sockets.tls
       typed_config:
